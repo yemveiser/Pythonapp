@@ -21,15 +21,16 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
 
+
     - name: Login to Amazon ECR
       run: |
-        aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin <AWS_ACCOUNT_ID>.dkr.ecr.<AWS_REGION>.amazonaws.com
+        aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 841162691171.dkr.ecr.us-east-1.amazonaws.com
 
     - name: Build and Push Docker Image
       run: |
         docker build -t my-python-app .
-        docker tag my-python-app <AWS_ACCOUNT_ID>.dkr.ecr.<AWS_REGION>.amazonaws.com/my-python-app
-        docker push <AWS_ACCOUNT_ID>.dkr.ecr.<AWS_REGION>.amazonaws.com/my-python-app
+        docker tag my-python-app 841162691171.dkr.ecr.us-east-1.amazonaws.com/my-python-app
+        docker push 841162691171.dkr.ecr.us-east-1.amazonaws.com/my-python-app
 
     - name: Deploy to ECS (if using ECS)
       run: |
